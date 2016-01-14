@@ -1,0 +1,31 @@
+The %{scl_name} package provides a set of commonly used Java libraries
+and tools for packaging Java applications. For more information
+about Software Collections, see the scl(1) man page.
+
+Usage: scl enable %{scl} bash
+
+Software Collections allow you to build and execute applications which
+are not located in the file system root hierarchy but instead are stored in
+an alternative location. The location is %{_scl_root} in
+case of the %{scl_name} Software Collection.
+
+The primary purpose of the %{scl_name} Software Collection is to provide
+support for other Software Collections. These Software Collections may depend
+on %{scl_name} and make use of common Java libraries and packaging tools
+provided by this collection. The contents of this Software Collection
+may change without prior notice.
+
+When you want to start working with the %{scl_name} Software Collection, use the
+scl utility to enable the SCL environment. See the scl(1) man page for
+usage.
+
+Examples:
+scl enable %{scl_name} 'command --arg'
+  Run a specific command with the argument --arg from within the
+  %{scl_name} Software Collection environment.
+
+scl enable %{scl_name} bash
+  Run an interactive shell with the %{scl_name} Software Collection
+  enabled.
+
+Report any bugs to <http://bugzilla.redhat.com>.

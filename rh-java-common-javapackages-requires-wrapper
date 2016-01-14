@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+export RPM_BUILD_ROOT="$1"
+shift
+
+while read filepath
+do
+  if [[ "$filepath" == */usr/share/maven-metadata/* ]]; then
+     echo "$filepath" | /opt/rh/rh-java-common/root/usr/lib/rpm/maven.req "${@}"
+  fi
+  if [[ "$filepath" == */usr/share/javadoc/* ]]; then
+     echo "$filepath" | /opt/rh/rh-java-common/root/usr/lib/rpm/javadoc.req "${@}"
+  fi
+done
