@@ -6,7 +6,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    43%{?dist}
+Release:    45%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -41,11 +41,19 @@ Package shipping essential configuration marcros/files in order to be able
 to build %scl Software Collection.
 
 %package scldevel
-Summary:    Package shipping development files for %scl
-Requires:   %{name}-runtime = %{version}-%{release}
-Requires:   %{scl_prefix_maven}scldevel
+Summary:    Package shipping development files for %scl, with support for maven30
+Requires:   %{name}-scldevel-common = %{version}-%{release}
+Requires:   %{?scl_prefix_maven}scldevel
 
 %description scldevel
+Package shipping development files, especially useful for development of
+packages depending on %scl and maven30 Software Collection.
+
+%package scldevel-common
+Summary:    Package shipping development files for %scl
+Requires:   %{name}-runtime = %{version}-%{release}
+
+%description scldevel-common
 Package shipping development files, especially useful for development of
 packages depending on %scl Software Collection.
 
@@ -190,11 +198,19 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_sysconfdir}/rpm/macros.%{scl}-config
 
 %files scldevel
+# intentionally empty
+%files scldevel-common
 %{_root_sysconfdir}/rpm/macros.%{scl_name_base}-scldevel
 %{_root_prefix}/lib/rpm/%{name}-javapackages-provides-wrapper
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Fri Jan 29 2016 Michal Srb <msrb@redhat.com> - 1.1-45
+- Rebuild
+
+* Wed Jan 27 2016 Michal Srb <msrb@redhat.com> - 1.1-44
+- Move all macros and scripts from scldevel to scldevel-common (Resolves: rhbz#1302336)
+
 * Tue Jul 21 2015 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-43
 - Fix syntax errors in manpage
 
