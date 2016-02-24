@@ -1,0 +1,9 @@
+%scl_java_common rh-java-common
+%scl_prefix_java_common rh-java-common-
+
+# macro to invoke the javapackages provides and requires generators on el6
+%java_common_find_provides_and_requires %{expand: \
+%global _use_internal_dependency_generator 0
+%global __find_provides %{?scl:scl enable %{?scl} --} %{_rpmconfigdir}/rh-java-common-javapackages-provides-wrapper %{buildroot} --cachedir %{_builddir}/%{?buildsubdir} --rpm-pid %{lua:print(posix.getprocessid("pid"))} %{?scl:--scl %{?scl}}
+%global __find_requires %{?scl:scl enable %{?scl} --} %{_rpmconfigdir}/rh-java-common-javapackages-requires-wrapper %{buildroot} --cachedir %{_builddir}/%{?buildsubdir} --rpm-pid %{lua:print(posix.getprocessid("pid"))} %{?scl:--scl %{?scl}}
+}

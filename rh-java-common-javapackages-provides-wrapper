@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+export RPM_BUILD_ROOT="$1"
+shift
+
+while read filepath
+do
+  if [[ "$filepath" == */usr/share/maven-metadata/* ]]; then
+     echo "$filepath" | /opt/rh/rh-java-common/root/usr/lib/rpm/maven.prov "${@}"
+  fi
+  if [[ "$filepath" == *.jar || "$filepath" == */MANIFEST.MF ]]; then
+     echo "$filepath" | /opt/rh/rh-java-common/root/usr/lib/rpm/osgi.prov "${@}"
+  fi
+done
