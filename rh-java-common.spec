@@ -6,7 +6,7 @@
 
 Name:       %scl_name
 Version:    1.1
-Release:    46%{?dist}
+Release:    47%{?dist}
 Summary:    Package that installs %scl
 
 License:    GPLv2+
@@ -205,6 +205,10 @@ install -m 755 -d %{buildroot}%{_datadir}/xmvn
 %{_root_prefix}/lib/rpm/%{name}-javapackages-requires-wrapper
 
 %changelog
+* Thu Jul 21 2016 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.1-47
+- Try to always enable Maven SCL during auto-req/prov generation
+- Resolves: rhbz#1358453
+
 * Fri Jan 29 2016 Michal Srb <msrb@redhat.com> - 1.1-46
 - Correctly handle XDG env. variables in enable script (Resolves: rhbz#1256340)
 
